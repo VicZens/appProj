@@ -5,7 +5,7 @@ class Dot {
   boolean eaten;
   
   //just a default construction, do not use
-  public Dot() { 
+  public Dot() {
     xcor = 0;
     ycor = 0;
     eaten = false;

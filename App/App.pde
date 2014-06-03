@@ -8,7 +8,7 @@ Cell c;
 =======
 boolean isFirst = true; //just to draw Board once
 int numDots = 0;
-Dot[] dots;
+protected Dot[] dots;
 Square[][] b = new Square[28][31];
 
 >>>>>>> e973eac... A little update
@@ -17,6 +17,14 @@ void setup() {
   size(448,496);
   background(0);
   img = loadImage("WBC.jpg");
+<<<<<<< HEAD
+=======
+  BVirus = loadImage("BlueVirus.jpg");
+  GVirus = loadImage("GreenVirus.jpg");
+  PVirus = loadImage("PinkVirus.jpg");
+  RVirus = loadImage("RedVirus.jpg");
+  c = new Cell(b[13][11], b, dots);
+>>>>>>> 67fc57a... push
 }
 
 <<<<<<< HEAD
@@ -121,7 +129,7 @@ void board() {
      }
   }
   int n = 0;
-  dots = new Dot[numDots];
+  dots = new Dot[numDots-1];
   for(Square[] sA : b){
     for(Square s : sA){
       fill(s.getColor());
@@ -134,7 +142,6 @@ void board() {
     }
   }
   
-  c = new Cell(b[13][11], b, dots);
   
 }
 
