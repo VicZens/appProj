@@ -92,6 +92,7 @@ class Cell{
     } else {      
       updateXY();
     }
+<<<<<<< HEAD
     fill(0);
     stroke(255);
     rect(loc.getX(),loc.getY(),loc.getSize(),loc.getSize());
@@ -103,6 +104,13 @@ class Cell{
     } else {
       image(img, x+1, y+1, img.height/9, img.width/9);
     }
+=======
+    try {
+    if(atWall(walls)){
+       setAll(oldTRX,oldTRY,oldBLX,oldBLY);
+    }} catch (NullPointerException n) {}
+    image(cellI,getTRX(),getTRY(),getBLX(),getBLY());
+>>>>>>> 9d0c6d6... Big Problems
   }
   
   void updateXY () {
