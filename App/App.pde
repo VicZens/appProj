@@ -7,6 +7,7 @@ void setup() {
 }
 
 void draw() {
+  rectMode(CORNER);
   if (step == 0) {
     Textbox t = new Textbox(0);
     t.display();
@@ -28,7 +29,7 @@ void mouseClicked() {
 
 void board() {
   size(448,496);
- Square[][] b = new Square[28][31];
+  Square[][] b = new Square[28][31];
   background(0);
   
 <<<<<<< HEAD
