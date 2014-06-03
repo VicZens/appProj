@@ -1,4 +1,4 @@
-class PowerUp {
+public class PowerUp {
   private int points;
 	private int xcor;
 	private int ycor;

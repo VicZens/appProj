@@ -5,3 +5,4 @@ class Invincible extends PowerUp {
     p.setWeakness(null);
   }
 }
+}

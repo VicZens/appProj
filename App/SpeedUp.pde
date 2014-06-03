@@ -5,4 +5,3 @@ class SpeedUp extends PowerUp {
       p.setSpeed(2 + p.getSpeed());
     }
   }
-}
