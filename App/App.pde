@@ -1,9 +1,10 @@
 int step = 0;
-
+PImage img;
 
 void setup() {
   size(448,496);
   background(0);
+  img = loadImage("WBC.jpg");
 }
 
 void draw() {
@@ -11,8 +12,11 @@ void draw() {
   if (step == 0) {
     Textbox t = new Textbox(0);
     t.display();
+    imageMode(CENTER);
+    image(img,224,248);
   } else if (step == 1) {
     background(0);
+    imageMode(CORNER);
     Textbox t = new Textbox(1);
     t.display();
   } else if (step == 2) {
