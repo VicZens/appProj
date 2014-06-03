@@ -3,7 +3,15 @@ int step = 0;
 PImage img;
 =======
 Cell c;
+<<<<<<< HEAD
 >>>>>>> ec71098... Try
+=======
+boolean isFirst = true; //just to draw Board once
+int numDots = 0;
+Dot[] dots;
+Square[][] b = new Square[28][31];
+
+>>>>>>> e973eac... A little update
 
 void setup() {
   size(448,496);
@@ -25,9 +33,51 @@ void draw() {
     Textbox t = new Textbox(1);
     t.display();
   } else if (step == 2) {
+<<<<<<< HEAD
     board();
   }
   
+=======
+    if (isFirst) {
+      board();
+      isFirst = false;
+    }
+    c.draw();
+  } else if (step == 3) {
+    background(0);
+    Textbox t = new Textbox(2);
+    t.display();
+  } else if (step == 4) {
+    background(0);
+    imageMode(CENTER);
+    image(BVirus,224,248,BVirus.height/2,BVirus.width/2);
+  } else if (step == 5) {
+    background(0);
+    Textbox t = new Textbox(3);
+    t.display();
+  } else if (step == 6) {
+    background(0);
+    image(GVirus,224,248,GVirus.height/2,GVirus.width/2);
+  } else if (step == 7) {
+    background(0);
+    Textbox t = new Textbox(4);
+    t.display();
+  } else if (step == 8) {
+    background(0);
+    image(PVirus,224,248,PVirus.height/2,PVirus.width/2);
+  } else if (step == 9) {
+    background(0);
+    Textbox t = new Textbox(5);
+    t.display();
+  } else if (step == 10) {
+    background(0);
+    image(RVirus,224,248,RVirus.height/2,RVirus.width/2);
+  } else {
+    background(0);
+    Textbox t = new Textbox(6);
+    t.display();
+  }   
+>>>>>>> e973eac... A little update
 }
 
 void mouseClicked() {
@@ -40,7 +90,6 @@ void mouseClicked() {
 >>>>>>> ec71098... Try
 void board() {
   size(448,496);
-  Square[][] b = new Square[28][31];
   background(0);
   
 <<<<<<< HEAD
@@ -64,21 +113,29 @@ void board() {
       ((y == 27 || y == 28) && !(x == 1 || x == 12 || x == 15 || x == 26)) ||
        y == 30){
          b[x][y] = new Square(x*16.0,y*16.0,16.0,true);
+         numDots++;
        }
        else{
          b[x][y] = new Square(x*16.0,y*16.0,16.0,false);
        }
      }
   }
+  int n = 0;
+  dots = new Dot[numDots];
   for(Square[] sA : b){
     for(Square s : sA){
       fill(s.getColor());
       stroke(#FFFFFF);
       rect(s.getX(),s.getY(),s.getSize(),s.getSize());
+      if (!(s.getWall())) {
+        dots[n] = new Dot(s);
+        n++;
+      }
     }
   }
-  c = new Cell(b[13][11], b);
-  c.draw();
+  
+  c = new Cell(b[13][11], b, dots);
+  
 }
 
 <<<<<<< HEAD

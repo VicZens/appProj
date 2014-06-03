@@ -1,18 +1,20 @@
 class Cell{
   
+  Dot[] dots;
   Square loc;
   Square[][] board;
   int dx, dy;
   int x, y;
   PImage img = loadImage("WBC.jpg");
   
-  Cell(Square s, Square[][] b){
+  Cell(Square s, Square[][] b, Dot[] d){
     loc = s;
     board = b;
     dx = 0;
     dy = 0;
     x = 208;
     y = 176;
+    dots = d;
   }
 /*
   void oldDraw(){//removed if(key == CODED), extraneous code.
@@ -85,6 +87,11 @@ class Cell{
       x = (int)loc.getX();
     }
     
+    for(Dot d : dots) {
+      if (!(d.getEaten())) {
+        d.display();
+      }
+    }
     
     if(next.getWall() || (dx == 0 && dy == 0)) {
       dx = 0;
@@ -120,7 +127,7 @@ class Cell{
     x = x + dx;
     y = y + dy;
   }
-  
+  /*
   void check () {
     if(board[x][y].isCellOn) {
          board[x][y].c = #FFFFFF;
@@ -131,7 +138,7 @@ class Cell{
        fill(board[x][y].c);
        rect(x*16,y*16,16,16);
    }
-   
+   */
    void xyTooFarRight() {
       x = 0;
    }
