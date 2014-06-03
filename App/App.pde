@@ -1,14 +1,34 @@
-//28x31->*16->448x496
-Cell c;
-Wall[] walls;
-PImage back;
+int step = 0;
 
-void setup(){
-  imageMode(CORNERS);
-  Wall[] walls = new Wall[868]; 
-  PImage back = loadImage("board.png");
+
+void setup() {
   size(448,496);
-  background(back);
+  background(0);
+}
+
+void draw() {
+  if (step == 0) {
+    Textbox t = new Textbox(0);
+    t.display();
+  } else if (step == 1) {
+    background(0);
+    Textbox t = new Textbox(1);
+    t.display();
+  } else if (step == 2) {
+    board();
+  }
+  
+}
+
+void mouseClicked() {
+  if (step != 2) {
+    step += 1;
+  }
+}
+
+void board() {
+  size(448,496);
+ Square[][] b = new Square[28][31];
   for(int x = 0; x < 28; x++){
      for(int y = 0; y < 31; y++){
        if(y == 0 || 
@@ -25,17 +45,20 @@ void setup(){
       ((y == 24 || y == 25) && !(x == 3 || x == 6 || x == 9 || x == 18 || x == 21 || x == 24)) ||
       ((y == 27 || y == 28) && !(x == 1 || x == 12 || x == 15 || x == 26)) ||
        y == 30){
-         walls[x*y+y] = new Wall(x*16.0,y*16.0,x*16.0+16.0,y*16.0+16.0);
+         b[x][y] = new Square(x*16.0,y*16.0,16.0,true);
        }
        else{
-         walls[x*y+y] = new Wall(0,0,0,0);
+         b[x][y] = new Square(x*16.0,y*16.0,16.0,false);
        }
      }
   }
-  c = new Cell(209.0, 177.0, 223.0, 191.0);
-}
-
-void draw(){
-  c.draw(walls);
-}
-
+  for(Square[] sA : b){
+    for(Square s : sA){
+      fill(s.getColor());
+      stroke(#FFFFFF);
+      rect(s.getX(),s.getY(),s.getSize(),s.getSize());
+    }
+  }
+  Cell c = new Cell(b[13][11], b);
+  c.draw();
+} 

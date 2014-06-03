@@ -1,82 +1,131 @@
 class Cell{
-  float topRightX, topRightY, bottomLeftX, bottomLeftY;
-  PImage cellI = loadImage("WBC.jpg");
   
-  Cell(float tRX, float tRY, float bLX, float bLY){
-    topRightX = tRX;
-    topRightY = tRY;
-    bottomLeftX = bLX;
-    bottomLeftY = bLY;
-  }
+  Square loc;
+  Square[][] board;
+  int dx, dy;
+  int x, y;
+  PImage img = loadImage("WBC.jpg");
   
-  void moveUp(){
-    topRightY--;
-    bottomLeftY--;
+  Cell(Square s, Square[][] b){
+    loc = s;
+    board = b;
+    dx = 0;
+    dy = 0;
+    x = 208;
+    y = 176;
   }
-  void moveDown(){
-    topRightY++;
-    bottomLeftY++;
-  }
-  void moveRight(){
-    topRightX++;
-    bottomLeftX++;
-  }
-  void moveLeft(){
-    topRightX--;
-    bottomLeftX--;
-  }
-  
-  float getTRX(){
-    return topRightX;
-  }
-  float getTRY(){
-    return topRightY;
-  }
-  float getBLX(){
-    return bottomLeftX;
-  }
-  float getBLY(){
-    return bottomLeftY;
-  }
-  
-  void setAll(float tRX, float tRY, float bLX, float bLY){
-    topRightX = tRX;
-    topRightY = tRY;
-    bottomLeftX = bLX;
-    bottomLeftY = bLY;
-  }
-  
-  boolean atWall(Wall[] walls){
-    for(Wall w : walls){
-      if(w.isIn(c.getTRX(),c.getTRY()) || w.isIn(c.getBLX(),c.getBLY()) || w.isIn(c.getTRX(),c.getBLY()) || w.isIn(c.getBLX(),c.getTRY())){
-        return true;
+/*
+  void oldDraw(){//removed if(key == CODED), extraneous code.
+    Square next;
+    try{
+      next = board[(int)((loc.getX()/16) + dx)][(int)((loc.getY()/16) - dy)];
+    }
+    catch(ArrayIndexOutOfBoundsException e){
+      if((int)loc.getX()/16 == 0){
+        next = board[27][14];
+      }
+      else{
+        next = board[0][14];
       }
     }
-    return false;
+    
+    if(next.getWall() || (dx == 0 && dy == 0)) {
+      dx = 0;
+      dy = 0;
+    }
+    else{
+      fill(255,255,0);
+      noStroke();
+      ellipseMode(CORNER);
+      ellipse(next.getX()+1, next.getY()+1, 15, 15);
+      fill(0);
+      stroke(255);
+      rect(loc.getX(),loc.getY(),loc.getSize(),loc.getSize());
+      loc = next;
+    }
   }
-  
-  void draw(Wall[] walls){
-    imageMode(CORNERS);
-    float oldTRX = getTRX();
-    float oldTRY = getTRY();
-    float oldBLX = getBLX();
-    float oldBLY = getBLY();
+*/
+  void draw() {
     if(keyCode == UP){
-        moveUp();
+      dx = 0;
+      dy = -1;
     }
     else if(keyCode == DOWN){
-      moveDown();
+      dx = 0;
+      dy = 1;
     }
     else if(keyCode == LEFT){
-      moveLeft();
+      dx = -1;
+      dy = 0;
     }
     else if(keyCode == RIGHT){
-      moveRight();
+      dx = 1;
+      dy = 0;
     }
-    if(atWall(walls)){
-       setAll(oldTRX,oldTRY,oldBLX,oldBLY);
+    Square next;
+    try {
+      loc = board[x/16][y/16];
+      next = board[(int)loc.getX()/16 + dx][(int)loc.getY()/16 + dy];
+    } catch(ArrayIndexOutOfBoundsException e){
+      if((int)loc.getX()/16 == 0){
+        xyTooFarLeft();
+        loc = board[0][14];
+        next = board[27][14];
+      }
+      else{
+        xyTooFarRight();
+        loc = board[27][14];
+        next = board[0][14];
+      }
     }
-    image(cellI,getTRX(),getTRY(),getBLX(),getBLY());
+    
+    if (keyCode == LEFT || keyCode == RIGHT) {
+      y = (int)loc.getY();
+    } else if (keyCode == UP || keyCode == DOWN) {
+      x = (int)loc.getX();
+    }
+    
+    
+    if(next.getWall() || (dx == 0 && dy == 0)) {
+      dx = 0;
+      dy = 0;
+    } else {      
+      updateXY();
+    }
+    fill(0);
+    stroke(255);
+    rect(loc.getX(),loc.getY(),loc.getSize(),loc.getSize());
+    loc = next;
+    if (dx<0) {
+      image(img, x-1, y+1, img.height/9, img.width/9);
+    } else if (dy<0) {
+      image(img, x+1, y-1, img.height/9, img.width/9);
+    } else {
+      image(img, x+1, y+1, img.height/9, img.width/9);
+    }
   }
+  
+  void updateXY () {
+    x = x + dx;
+    y = y + dy;
+  }
+  
+  void check () {
+    if(board[x][y].isCellOn) {
+         board[x][y].c = #FFFFFF;
+       }else{ 
+         board[x][y].c = #000000;
+       }
+       stroke(board[x][y].c);
+       fill(board[x][y].c);
+       rect(x*16,y*16,16,16);
+   }
+   
+   void xyTooFarRight() {
+      x = 0;
+   }
+   void xyTooFarLeft() {
+      x = 432;
+   }
   
 }
