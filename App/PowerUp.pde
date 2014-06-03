@@ -1,7 +1,7 @@
-public class PowerUp {
-  private int points;
-	private int xcor;
-	private int ycor;
+class PowerUp {
+        private int points;
+	protected int xcor;
+	protected int ycor;
 
 	//default constructor
 	public PowerUp() {

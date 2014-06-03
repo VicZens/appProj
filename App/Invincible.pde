@@ -1,8 +1,8 @@
 class Invincible extends PowerUp {
   Cell p;
   void act() {
-  if (isEaten()) {
+  /*if (isEaten(xcor,ycor)) {
     p.setWeakness(null);
-  }
+  }*/
 }
 }
