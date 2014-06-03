@@ -3,7 +3,6 @@ int step = 0;
 
 void setup() {
   size(448,496);
-<<<<<<< HEAD
   background(0);
 }
 
@@ -30,10 +29,12 @@ void mouseClicked() {
 void board() {
   size(448,496);
  Square[][] b = new Square[28][31];
-=======
-  background(back);
+  background(0);
   
+<<<<<<< HEAD
 >>>>>>> 9d0c6d6... Big Problems
+=======
+>>>>>>> d59ce28... Fixed
   for(int x = 0; x < 28; x++){
      for(int y = 0; y < 31; y++){
        if(y == 0 || 
@@ -57,7 +58,6 @@ void board() {
        }
      }
   }
-<<<<<<< HEAD
   for(Square[] sA : b){
     for(Square s : sA){
       fill(s.getColor());
@@ -67,25 +67,9 @@ void board() {
   }
   Cell c = new Cell(b[13][11], b);
   c.draw();
-} 
-=======
-  c = new Cell(209.0, 177.0, 223.0, 191.0);
 }
 
-void draw(){
-  c.draw(walls);
-}
-
-void keyPressed() {
-  if (key == 'w') {
-    c.moveUp(); 
-  } else if (key == 'a') {
-    c.moveLeft(); 
-  } else if (key == 's') {
-    c.moveDown(); 
-  } else if (key == 'd') {
-    c.moveRight(); 
-  }
-}
-
+<<<<<<< HEAD
 >>>>>>> 9d0c6d6... Big Problems
+=======
+>>>>>>> d59ce28... Fixed
