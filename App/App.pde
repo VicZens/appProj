@@ -1,5 +1,9 @@
 int step = 0;
+<<<<<<< HEAD
 PImage img;
+=======
+Cell c;
+>>>>>>> ec71098... Try
 
 void setup() {
   size(448,496);
@@ -7,6 +11,7 @@ void setup() {
   img = loadImage("WBC.jpg");
 }
 
+<<<<<<< HEAD
 void draw() {
   rectMode(CORNER);
   if (step == 0) {
@@ -31,6 +36,8 @@ void mouseClicked() {
   }
 }
 
+=======
+>>>>>>> ec71098... Try
 void board() {
   size(448,496);
   Square[][] b = new Square[28][31];
@@ -70,11 +77,37 @@ void board() {
       rect(s.getX(),s.getY(),s.getSize(),s.getSize());
     }
   }
-  Cell c = new Cell(b[13][11], b);
+  c = new Cell(b[13][11], b);
   c.draw();
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9d0c6d6... Big Problems
 =======
 >>>>>>> d59ce28... Fixed
+=======
+void draw() {
+  rectMode(CORNER);
+  if (step == 0) {
+    Textbox t = new Textbox(0);
+    t.display();
+  } else if (step == 1) {
+    background(0);
+    Textbox t = new Textbox(1);
+    t.display();
+  } else if (step == 2) {
+    board();
+    c.draw();
+  } 
+}
+
+void mouseClicked() {
+  if (step != 2) {
+    step += 1;
+  }
+}
+
+
+
+>>>>>>> ec71098... Try
