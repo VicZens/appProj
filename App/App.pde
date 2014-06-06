@@ -22,8 +22,6 @@ void setup() {
   GVirus = loadImage("GreenVirus.jpg");
   PVirus = loadImage("PinkVirus.jpg");
   RVirus = loadImage("RedVirus.jpg");
-  dots = new Dot[1];
-  dots[0] = new Dot();
   c = new Cell(b[13][11], b, dots);
 >>>>>>> 67fc57a... push
 }
