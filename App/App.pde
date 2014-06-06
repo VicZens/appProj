@@ -7,8 +7,7 @@ Cell c;
 >>>>>>> ec71098... Try
 =======
 boolean isFirst = true; //just to draw Board once
-int numDots = 0;
-protected Dot[] dots;
+Dot[] dots = new Dot[300];
 Square[][] b = new Square[28][31];
 
 >>>>>>> e973eac... A little update
@@ -123,7 +122,6 @@ void board() {
       ((y == 27 || y == 28) && !(x == 1 || x == 12 || x == 15 || x == 26)) ||
        y == 30){
          b[x][y] = new Square(x*16.0,y*16.0,16.0,true);
-         numDots++;
        }
        else{
          b[x][y] = new Square(x*16.0,y*16.0,16.0,false);
@@ -131,7 +129,6 @@ void board() {
      }
   }
   int n = 0;
-  dots = new Dot[numDots-1];
   for(Square[] sA : b){
     for(Square s : sA){
       fill(s.getColor());

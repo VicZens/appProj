@@ -6,6 +6,7 @@ class Cell{
   int dx, dy;
   int x, y;
   PImage img = loadImage("WBC.jpg");
+  Square next;
   
   Cell(Square s, Square[][] b, Dot[] d){
     loc = s;
@@ -34,7 +35,6 @@ class Cell{
       dx = 1;
       dy = 0;
     }
-    Square next;
     try {
       loc = board[x/16][y/16];
       next = board[(int)loc.getX()/16 + dx][(int)loc.getY()/16 + dy];
@@ -63,12 +63,6 @@ class Cell{
       }
     }
     
-    if(next.getWall() || (dx == 0 && dy == 0)) {
-      dx = 0;
-      dy = 0;
-    } else {      
-      updateXY();
-    }
     fill(0);
     stroke(255);
     rect(loc.getX(),loc.getY(),loc.getSize(),loc.getSize());
@@ -81,6 +75,7 @@ class Cell{
       image(img, x+1, y+1, img.height/9, img.width/9);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     try {
     if(atWall(walls)){
@@ -90,6 +85,21 @@ class Cell{
 >>>>>>> 9d0c6d6... Big Problems
 =======
 >>>>>>> d59ce28... Fixed
+=======
+    for (Dot d : dots) {
+      if (d.xcor == x && d.ycor == y) {
+        d.setEaten();
+      }
+    }
+    
+    if(next.getWall() || (dx == 0 && dy == 0)) {
+      dx = 0;
+      dy = 0;
+    } else {      
+      updateXY();
+    }
+    
+>>>>>>> bc5beeb... IT WORKKKSSSSS
   }
 
   
@@ -115,5 +125,24 @@ class Cell{
    void xyTooFarLeft() {
       x = 432;
    }
-  
+   /*
+   void drawCell() {
+     fill(0);
+    stroke(255);
+    rect(loc.getX(),loc.getY(),loc.getSize(),loc.getSize());
+    loc = next;
+    if (dx<0) {
+      image(img, x-1, y+1, img.height/9, img.width/9);
+    } else if (dy<0) {
+      image(img, x+1, y-1, img.height/9, img.width/9);
+    } else {
+      image(img, x+1, y+1, img.height/9, img.width/9);
+    }
+    for (Dot d : dots) {
+      if (d.xcor == x && d.ycor == y) {
+        d.setEaten();
+      }
+    }
+   }
+   */
 }

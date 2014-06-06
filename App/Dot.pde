@@ -18,7 +18,13 @@ class Dot {
   }
   
   void display() {
-    ellipse(xcor,ycor,16,16);
+    ellipseMode(CORNER);
+    fill(225,225,0);
+    ellipse(xcor+4,ycor+4,8,8);
+  }
+  
+  void setEaten() {
+    eaten = true;
   }
   
   boolean getEaten() {
