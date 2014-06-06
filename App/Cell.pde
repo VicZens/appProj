@@ -16,37 +16,7 @@ class Cell{
     y = 176;
     dots = d;
   }
-/*
-  void oldDraw(){//removed if(key == CODED), extraneous code.
-    Square next;
-    try{
-      next = board[(int)((loc.getX()/16) + dx)][(int)((loc.getY()/16) - dy)];
-    }
-    catch(ArrayIndexOutOfBoundsException e){
-      if((int)loc.getX()/16 == 0){
-        next = board[27][14];
-      }
-      else{
-        next = board[0][14];
-      }
-    }
-    
-    if(next.getWall() || (dx == 0 && dy == 0)) {
-      dx = 0;
-      dy = 0;
-    }
-    else{
-      fill(255,255,0);
-      noStroke();
-      ellipseMode(CORNER);
-      ellipse(next.getX()+1, next.getY()+1, 15, 15);
-      fill(0);
-      stroke(255);
-      rect(loc.getX(),loc.getY(),loc.getSize(),loc.getSize());
-      loc = next;
-    }
-  }
-*/
+
   void draw() {
     if(keyCode == UP){
       dx = 0;
