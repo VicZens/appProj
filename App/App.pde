@@ -9,6 +9,7 @@ Cell c;
 boolean isFirst = true; //just to draw Board once
 Dot[] dots = new Dot[300];
 Square[][] b = new Square[28][31];
+boolean allEaten = false;
 
 >>>>>>> e973eac... A little update
 
@@ -22,8 +23,11 @@ void setup() {
   GVirus = loadImage("GreenVirus.jpg");
   PVirus = loadImage("PinkVirus.jpg");
   RVirus = loadImage("RedVirus.jpg");
+<<<<<<< HEAD
   c = new Cell(b[13][11], b, dots);
 >>>>>>> 67fc57a... push
+=======
+>>>>>>> c842076... DONE
 }
 
 <<<<<<< HEAD
@@ -50,6 +54,16 @@ void draw() {
       isFirst = false;
     }
     c.draw();
+    for (Dot d : dots) {
+      if (!(d.getEaten())) {
+        break;
+      } else {
+        allEaten = true;
+      }
+    }
+    if (allEaten) {
+      step++;
+    }
   } else if (step == 3) {
     background(0);
     Textbox t = new Textbox(2);
@@ -119,10 +133,10 @@ void board() {
       ((y == 24 || y == 25) && !(x == 3 || x == 6 || x == 9 || x == 18 || x == 21 || x == 24)) ||
       ((y == 27 || y == 28) && !(x == 1 || x == 12 || x == 15 || x == 26)) ||
        y == 30){
-         b[x][y] = new Square(x*16.0,y*16.0,16.0,true);
+         b[x][y] = new Square(x*16,y*16,16,true);
        }
        else{
-         b[x][y] = new Square(x*16.0,y*16.0,16.0,false);
+         b[x][y] = new Square(x*16,y*16,16,false);
        }
      }
   }
@@ -138,7 +152,7 @@ void board() {
       }
     }
   }
-  
+  c = new Cell(b[13][11], b, dots);
   
 }
 
@@ -164,7 +178,11 @@ void draw() {
 }
 
 void mouseClicked() {
+<<<<<<< HEAD
   if (step != 2) {
+=======
+  if (!(step == 2)) {
+>>>>>>> c842076... DONE
     step += 1;
   }
 }

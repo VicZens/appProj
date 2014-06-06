@@ -13,8 +13,8 @@ class Cell{
     board = b;
     dx = 0;
     dy = 0;
-    x = 208;
-    y = 176;
+    x = s.getX();
+    y = s.getY();
     dots = d;
   }
 
@@ -36,8 +36,8 @@ class Cell{
       dy = 0;
     }
     try {
-      loc = board[x/16][y/16];
-      next = board[(int)loc.getX()/16 + dx][(int)loc.getY()/16 + dy];
+      loc = board[round(x/16.0)][round(y/16.0)];
+      next = board[loc.getX()/16 + dx][loc.getY()/16 + dy];
     } catch(ArrayIndexOutOfBoundsException e){
       if((int)loc.getX()/16 == 0){
         xyTooFarLeft();
@@ -66,7 +66,6 @@ class Cell{
     fill(0);
     stroke(255);
     rect(loc.getX(),loc.getY(),loc.getSize(),loc.getSize());
-    loc = next;
     if (dx<0) {
       image(img, x-1, y+1, img.height/9, img.width/9);
     } else if (dy<0) {
@@ -107,42 +106,11 @@ class Cell{
     x = x + dx;
     y = y + dy;
   }
-  /*
-  void check () {
-    if(board[x][y].isCellOn) {
-         board[x][y].c = #FFFFFF;
-       }else{ 
-         board[x][y].c = #000000;
-       }
-       stroke(board[x][y].c);
-       fill(board[x][y].c);
-       rect(x*16,y*16,16,16);
-   }
-   */
+  
    void xyTooFarRight() {
       x = 0;
    }
    void xyTooFarLeft() {
       x = 432;
    }
-   /*
-   void drawCell() {
-     fill(0);
-    stroke(255);
-    rect(loc.getX(),loc.getY(),loc.getSize(),loc.getSize());
-    loc = next;
-    if (dx<0) {
-      image(img, x-1, y+1, img.height/9, img.width/9);
-    } else if (dy<0) {
-      image(img, x+1, y-1, img.height/9, img.width/9);
-    } else {
-      image(img, x+1, y+1, img.height/9, img.width/9);
-    }
-    for (Dot d : dots) {
-      if (d.xcor == x && d.ycor == y) {
-        d.setEaten();
-      }
-    }
-   }
-   */
 }

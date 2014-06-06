@@ -5,7 +5,7 @@ class Textbox {
   int YCOR = 248;
   int H = 448;
   int W = 496;
-  String menu = "Health Project\n\n\n\n\n\n\n\n\n\n\n\n" +
+  String menu = "White Cell Man\n\n\n\n\n\n\n\n\n\n\n\n" +
   "Welcome!\nClick anywhere to start!";
   String instructions = "You are a white blood cell (WBC).\n" +
   "Your mission is to collect all of the nutrients\n" +

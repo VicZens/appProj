@@ -1,10 +1,10 @@
 class Square{
-  float xcor;
-  float ycor;
+  int xcor;
+  int ycor;
   color c;
   float size;
   boolean wall;
-  Square(float x, float y, float s, boolean w){
+  Square(int x, int y, float s, boolean w){
     xcor = x;
     ycor = y;
     wall = w;
@@ -17,10 +17,10 @@ class Square{
       c = #000000;
     }
   }
-  float getX(){
+  int getX(){
     return xcor;
   }
-  float getY(){
+  int getY(){
     return ycor;
   }
   float getSize(){
